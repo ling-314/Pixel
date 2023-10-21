@@ -1,2 +1,2 @@
-#像素
+# Pixel
 A lightweight C++ graphics library

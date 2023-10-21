@@ -1,4 +1,2 @@
-# Pixel
+#像素
 A lightweight C++ graphics library
-
-There are some problems with text nodes, please use Sprite nodes instead

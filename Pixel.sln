@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33927.249
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pixel-Dev", "Pixel-Dev\Pixel-Dev.vcxproj", "{78A097BD-DA72-446F-98E4-69E63C8E4C04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Debug|x64.ActiveCfg = Debug|x64
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Debug|x64.Build.0 = Debug|x64
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Debug|x86.ActiveCfg = Debug|Win32
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Debug|x86.Build.0 = Debug|Win32
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Release|x64.ActiveCfg = Release|x64
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Release|x64.Build.0 = Release|x64
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Release|x86.ActiveCfg = Release|Win32
+		{78A097BD-DA72-446F-98E4-69E63C8E4C04}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBA6EAFC-CF3A-4271-BE73-1655F4484C80}
+	EndGlobalSection
+EndGlobal

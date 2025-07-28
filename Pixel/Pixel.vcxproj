@@ -75,7 +75,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -153,7 +153,6 @@
   <ItemGroup>
     <ClInclude Include="PAudio.hpp" />
     <ClInclude Include="PCamera.hpp" />
-    <ClInclude Include="PCollision.hpp" />
     <ClInclude Include="PConsole.hpp" />
     <ClInclude Include="PEvent.hpp" />
     <ClInclude Include="PPath.hpp" />

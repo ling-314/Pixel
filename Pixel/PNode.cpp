@@ -23,6 +23,10 @@ Pixel::Node::Node(Point position) :
 	_ResetSize();
 }
 
+void Pixel::Node::RenderSelf(Renderer* renderer)
+{
+}
+
 void Pixel::Node::Update()
 {
 }

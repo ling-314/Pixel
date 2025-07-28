@@ -297,17 +297,4 @@ namespace Pixel
 		void*			_buffer;
 		unsigned int	_size;
 	};
-
-	class CollisionBox
-	{
-		friend class Node;
-	public:
-		CollisionBox();
-		CollisionBox(std::vector<Point> vertexes, Size size);
-	private:
-		std::vector<Point>				_vertexes;
-		std::vector<std::vector<Point>>	_triangles;
-	private:
-		void _Create(const Size size);
-	};
 }

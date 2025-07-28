@@ -117,24 +117,24 @@ void Pixel::Renderer::DrawEllipse(float radiusX, float radiusY, GraphicAttribute
 		);
 }
 
-void Pixel::Renderer::DrawRectangle(float width, float height, float radiusX, float radiusY, GraphicAttribute attr)
+void Pixel::Renderer::DrawRectangle(float width, float height, GraphicAttribute attr)
 {
 	_pSolidColorBrush->SetColor(attr.color);
 	if (attr.fill)
-		_pRenderTarget->FillRoundedRectangle(
-			D2D1::RoundedRect(
-				Size(width / -2, height / -2, width, height),
-				radiusX,
-				radiusY
+		_pRenderTarget->FillRectangle(
+			Size(width / -2,
+				height / -2,
+				width,
+				height
 			),
 			_pSolidColorBrush
 		);
 	else
-		_pRenderTarget->DrawRoundedRectangle(
-			D2D1::RoundedRect(
-				Size(width / -2, height / -2, width, height),
-				radiusX,
-				radiusY
+		_pRenderTarget->DrawRectangle(
+			Size(width / -2,
+				height / -2,
+				width,
+				height
 			),
 			_pSolidColorBrush,
 			attr.strokeWidth

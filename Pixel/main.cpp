@@ -6,6 +6,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	Window main;
 	if (main.Init())
 	{
+		
 	}
 	else
 	{
@@ -13,5 +14,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		Sprite::Destroy();
 		return 1;
 	}
+	Renderer::Destroy();
+	Sprite::Destroy();
 	return 0;
 }

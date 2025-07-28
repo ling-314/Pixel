@@ -22,7 +22,7 @@ namespace Pixel
 		Node(Point position);
 		// 渲染（自己）
 		// 重载这个函数，自定义渲染方式
-		virtual void RenderSelf(Renderer* renderer) = 0;
+		virtual void RenderSelf(Renderer* renderer);
 		// 重载这个函数，每帧都执行
 		virtual void Update();
 		// 渲染
@@ -57,11 +57,11 @@ namespace Pixel
 		// 获取Y偏移
 		float GetOffsetY() const;
 		// 获取渲染坐标
-		inline Point GetRenderPosition() const;
+		Point GetRenderPosition() const;
 		// 获取渲染X坐标
-		inline float GetRenderPositionX() const;
+		float GetRenderPositionX() const;
 		// 获取渲染Y坐标
-		inline float GetRenderPositionY() const;
+		float GetRenderPositionY() const;
 		// 是否显示
 		bool IsVisible() const;
 		// 获取缩放大小
@@ -84,31 +84,35 @@ namespace Pixel
 		// 设置坐标
 		void SetPosition(Point position);
 		// 设置坐标
-		inline void SetPosition(float x, float y);
+		void SetPosition(float x, float y);
 		// 设置X坐标
-		inline void SetPositionX(float x);
+		void SetPositionX(float x);
 		// 设置Y坐标
-		inline void SetPositionY(float y);
+		void SetPositionY(float y);
 		// 设置偏移
 		void SetOffset(Vector2 offset);
 		// 设置偏移
-		inline void SetOffset(float x, float y);
+		void SetOffset(float x, float y);
 		// 设置X偏移
-		inline void SetOffsetX(float x);
+		void SetOffsetX(float x);
 		// 设置Y偏移
-		inline void SetOffsetY(float y);
+		void SetOffsetY(float y);
 	public:
 		// 缩放
 		void Scale(Vector2 scale);
 		// 缩放至
 		void ScaleTo(Vector2 scale);
 		// 缩放X
+		// 非等比缩放会影响碰撞检测
 		void ScaleX(float x);
 		// 缩放X至
+		// 非等比缩放会影响碰撞检测
 		void ScaleXTo(float x);
 		// 缩放Y
+		// 非等比缩放会影响碰撞检测
 		void ScaleY(float y);
 		// 缩放Y至
+		// 非等比缩放会影响碰撞检测
 		void ScaleYTo(float y);
 		// X翻转
 		void FlipX();
@@ -147,7 +151,6 @@ namespace Pixel
 		Vector2				_skew;
 		Size				_size;
 		int					_layer;
-		CollisionBox		_collisionBox;
 		Node*				_parent;
 		Scene*				_where;
 		std::vector<Node*>	_children;
@@ -247,29 +250,55 @@ namespace Pixel
 		GraphicAttribute _attr;
 	};
 
-	// 椭圆
-	class Ellipse :
+	class EllipseBase :
 		public Graphic
 	{
 	public:
+		EllipseBase();
+		EllipseBase(float x, float y);
+		EllipseBase(float radius);
+		EllipseBase(float x, float y, float radius);
+	public:
+		// 获取 X 半径
+		float GetRadiusX() const;
+		// 获取 Y 半径
+		float GetRadiusY() const;
+	public:
+		// 设置半径
+		void SetRadius(float radius);
+	protected:
+		virtual void _ResetSize() override;
+	protected:
+		float _radiusX;
+		float _radiusY;
+	};
+
+	class Ellipse :
+		public EllipseBase
+	{
+	public:
 		Ellipse();
+		Ellipse(float radiusX, float radiusY);
 		Ellipse(float x, float y, float radiusX, float radiusY);
 		virtual void RenderSelf(Renderer* renderer) override;
 	public:
-		// 获取X半径
-		float GetRadiusX() const;
-		// 获取Y半径
-		float GetRadiusY() const;
-	public:
-		// 设置X半径
+		// 设置 X 半径
 		void SetRadiusX(float radiusX);
-		// 设置Y半径
+		// 设置 Y 半径
 		void SetRadiusY(float radiusY);
-	protected:
-		virtual void _ResetSize() override;
-	private:
-		float _radiusX;
-		float _radiusY;
+	};
+
+	class Circle :
+		public EllipseBase
+	{
+	public:
+		Circle();
+		Circle(float radius);
+		Circle(float x, float y, float radius);
+		virtual void RenderSelf(Renderer* renderer) override;
+	public:
+		// 获取半径
+		float GetRadius() const;
 	};
 
 	class PolygonBase :
@@ -277,6 +306,11 @@ namespace Pixel
 	{
 	public:
 		PolygonBase();
+	public:
+		// 获取顶点
+		virtual std::vector<Point> GetVertices() const = 0;
+		// 获取顶点数量
+		size_t GetVertexCount() const { return GetVertices().size(); }
 	};
 
 	class Rectangle :
@@ -291,9 +325,53 @@ namespace Pixel
 		float GetWidth() const;
 		// 获取高度
 		float GetHeight() const;
+		// 获取顶点
+		std::vector<Point> GetVertices() const override;
+	public:
+		// 设置宽度
+		void SetWidth(float width);
+		// 设置高度
+		void SetHeight(float height);
+	protected:
+		virtual void _ResetSize() override;
 	private:
 		float _width;
 		float _height;
+	};
+
+	class Polygon :
+		public PolygonBase
+	{
+	public:
+		Polygon();
+		Polygon(std::vector<Point> vertices);
+		Polygon(std::initializer_list<Point> vertices);
+		virtual void RenderSelf(Renderer* renderer) override;
+	public:
+		// 获取顶点
+		std::vector<Point> GetVertices() const override;
+	public:
+		// 设置顶点
+		void SetVertices(std::vector<Point> vertices);
+		// 设置顶点
+		void SetVertices(std::initializer_list<Point> vertices);
+		// 添加顶点
+		void AddVertex(Point vertex);
+		// 添加顶点
+		void AddVertices(std::initializer_list<Point> vertices);
+		// 移除顶点
+		void RemoveVertex(Point vertex);
+		// 移除顶点
+		void RemoveVertices(std::initializer_list<Point> vertices);
+		// 清空顶点
+		void ClearVertices();
+	protected:
+		virtual void _ResetSize() override;
+	private:
+		std::vector<Point> _vertices;
+		ID2D1PathGeometry* _pPathGeometry;
+	private:
+		void _Create();
 	};
 
 	// 线段

@@ -42,9 +42,6 @@
     <ClCompile Include="PScene.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="PEllipse.cpp">
-      <Filter>源文件\节点</Filter>
-    </ClCompile>
     <ClCompile Include="PGraphic.cpp">
       <Filter>源文件\节点</Filter>
     </ClCompile>
@@ -76,6 +73,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PPolygon.cpp">
+      <Filter>源文件\节点</Filter>
+    </ClCompile>
+    <ClCompile Include="PEllipse.cpp">
       <Filter>源文件\节点</Filter>
     </ClCompile>
   </ItemGroup>
@@ -111,9 +111,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="PPath.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="PCollision.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

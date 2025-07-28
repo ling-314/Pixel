@@ -48,7 +48,7 @@ namespace Pixel
 		// ª≠Õ÷‘≤
 		void DrawEllipse(float radiusX, float radiusY, GraphicAttribute attr);
 		// ª≠æÿ–Œ
-		void DrawRectangle(float width, float height, float radiusX, float radiusY, GraphicAttribute attr);
+		void DrawRectangle(float width, float height, GraphicAttribute attr);
 		// ª≠œﬂ∂Œ
 		void DrawLine(Point vertex1, Point vertex2, GraphicAttribute attr);
 		// ª≠∂‡±ﬂ–Œ
